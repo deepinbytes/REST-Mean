@@ -2,7 +2,8 @@ var express = require('express'),
 mongoose = require('mongoose'),
 fs = require('fs');
 
-var mongoUri = 'mongodb://localhost/noderest';
+
+var mongoUri = 'mongodb://admin:test123#@ds021915.mlab.com:21915/vaultdragon';
 mongoose.connect(mongoUri);
 var db = mongoose.connection;
 db.on('error', function () {
