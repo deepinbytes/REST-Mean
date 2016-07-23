@@ -18,11 +18,11 @@ Find Value by Timestamp: https://vault-dragon-challenge.herokuapp.com/object/{ke
 Method: GET
 
 Add/Update:
-https://vault-dragon-challenge.herokuapp.com/object/{key}
+https://vault-dragon-challenge.herokuapp.com/object/
 
 Method: POST
-Body: JSON: {val: value}
+Body: JSON: {_key:key ,val: value}
 
 Curl example for add/update in windows:
 
-curl -i -X POST -H "Content-Type: application/json" -d "{\"val\": \"testing\"}" https://vault-dragon-challenge.herokuapp.com/object/Eric
+curl -i -X POST -H "Content-Type: application/json" -d "{\"_key\": \"testing\",\"val\": \"testing\"}" https://vault-dragon-challenge.herokuapp.com/object/
