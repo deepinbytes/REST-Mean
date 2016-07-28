@@ -4,6 +4,7 @@ values=mongoose.model('values');
 
 //Index page
 exports.index = function(req, res){
+	if(res)
 res.status(404).json({message: "REST API. Refer API Documentation for the Endpoints."});
 };
 
@@ -30,7 +31,9 @@ exports.findByKey = function(req, res){
 		   return res.send(result);
 	   }
 		   else{
-		res.status(500).json({message: "Key not found"});
+			  
+		 res.status(500).json({message: "Key not found"});
+		
 					} 
 });}
 else

@@ -1,0 +1,93 @@
+<html>
+<head>
+	<title>Vault Dragon</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div ng-app="vaultDragon">
+	<div class='text-center' ng-controller='appController'>
+		<br>
+		
+			<div class="col-md-2">
+  		<ul class="nav nav-pills nav-stacked">
+       	<li ng-class="{ active: isSet(1) }">
+          	<a href ng-click="setTab(1)">Home</a>
+       	</li>
+       	<li ng-class="{ active: isSet(2) }">
+          	<a href ng-click="setTab(2)">Add/Update</a>
+       	</li>
+       	<li ng-class="{ active: isSet(3) }">
+          	<a href ng-click="setTab(3)">Search by key</a>
+       	</li>
+		       	<li ng-class="{ active: isSet(4) }">
+          	<a href ng-click="setTab(4)">Search by key and timestamp</a>
+       	</li>
+     	</ul>
+  	</div>
+    <div class="col-md-8">
+  		<div class="jumbotron">
+       	<div ng-show="isSet(1)">
+         	 <h1>Vault Dragon API Test</h1>
+          	<p>Welcome to the website!</p>
+         	 <p><a class="btn btn-primary btn-lg" 	target="_blank" ng-href="{{url}}"  ng-mousedown="opengit()"	role="button">Learn more</a></p>
+        	</div>
+			<div ng-show="isSet(2)">
+         <h1>Add Key and Value</h1>
+			<label class='text-danger' ng-cloak ng-if='res.status == 202'>Key and value added to the database</label>
+			<label class='text-danger' ng-cloak ng-if='res.status == 500'>Key not found in database</label>
+			<label class='text-danger' ng-cloak ng-if='dataErr'>Enter key and value to add</label>
+			<br>
+			
+			<div style='width:80%;margin:auto;'>			
+				<br>
+				<p><input type='text' class='form-control' placeholder='Enter your Key' ng-model='data.key'></p>
+				<label class='text-danger' ng-cloak ng-if='dataKeyErr'>Enter any key</label>
+				<br>
+				<input type='text' class='form-control' placeholder='Enter your value' ng-model='data.value'>
+				<label class='text-danger' ng-cloak ng-if='dataValueErr'>Enter any value</label>
+				<br>
+				<button class='btn btn-primary' ng-click='AddorUpdate(data)'>Submit</button>
+			</div>
+		<br>
+		
+     	</div>
+        <div ng-show="isSet(3)">
+		<h1>Search value for key</h1>
+      		
+			<div style='width:80%;margin:auto;'>
+
+				<input type='text' class='form-control' placeholder='Enter your Key' ng-model='Query.key'>
+				<br>
+				<label class='text-danger' ng-cloak ng-if='searchErr'>Enter a key to Search</label>
+				<br ng-cloak ng-if='searchErr'>
+				<button class='btn btn-primary' ng-click='QuerybyVal(Query)'>Submit</button>
+				<br>
+				<h4 class='text-complete' ng-if='rows.value' ng-cloak>The latest value for the given key is {{rows.value}}</h4>
+				<h5 class='text-complete' ng-if='rows.message' ng-cloak>Error: {{rows.message}}</h5>
+			</div>
+			<hr>
+			
+		
+     	</div>
+  	<div ng-show="isSet(4)">
+	<div style='width:80%;margin:auto;'>
+				<h2>Search value for key with unix timestamp</h2>
+				<input type='text' class='form-control' placeholder='Enter your Key' ng-model='Query.key'>
+				<br>
+				<input type='text' class='form-control' placeholder='Enter TimeStamp' ng-model='Query.timestamp'>
+				<br>
+				<button class='btn btn-primary' ng-click='QuerybyTimestamp(Query)'>Submit</button>
+				<br>
+				<h4 class='text-complete' ng-if='rowsPart.value' ng-cloak>The latest value for the given key is {{rowsPart.value}}</h4>
+			</div>
+	</div>
+	</div>
+	</div> 	
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js'></script>
+<script type="text/javascript" src='client/app.js'></script>
+<script type="text/javascript" src='client/appController.js'></script>
+</body>
+</html>
